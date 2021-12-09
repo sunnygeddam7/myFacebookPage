@@ -24,16 +24,15 @@ steps:
   inputs:
     SonarCloud: 'sonar-cloud'
     organization: 'sonardemo7'
-    scannerMode: 'MSBuild'
-    projectKey: 'nodejssample'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'nodejssample'
+    cliSources: '.'
 - task: Npm@1
   inputs:
     command: 'custom'
     customCommand: 'run build'
 - task: SonarCloudAnalyze@1
-- task: SonarCloudPublish@1
-  inputs:
-    pollingTimeoutSec: '300'
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: 'dist'
