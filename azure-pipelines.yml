@@ -3,6 +3,7 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
+
 trigger:
 - master
 
@@ -18,10 +19,21 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonar-cloud'
+    organization: 'sonardemo7'
+    scannerMode: 'MSBuild'
+    projectKey: 'nodejssample'
 - task: Npm@1
   inputs:
     command: 'custom'
     customCommand: 'run build'
+- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: 'dist'
