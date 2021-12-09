@@ -22,11 +22,12 @@ steps:
 
 - task: SonarCloudPrepare@1
   inputs:
-    SonarCloud: 'sonar-cloud'
-    organization: 'sonardemo7'
+    SonarCloud: 'node sona5r'
+    organization: 'nodejssample'
     scannerMode: 'CLI'
     configMode: 'manual'
-    cliProjectKey: 'nodejssample'
+    cliProjectKey: 'sunny03_sample-nodejs'
+    cliProjectName: 'sample nodejs'
     cliSources: '.'
 - task: Npm@1
   inputs:
